@@ -8,18 +8,31 @@
 //
 
 #include<iostream>
-#include<cstring>
+#include<string>
 #include<algorithm>
-#include<vector> 
+#include<vector>
 using namespace std;
 
 int main()
 {
    	string str="";
     
+    int count=0;
+    int i=0;
+    getline(cin, str);
+    for(i=str.length()-1;i>=0;i--)
+    {
+        if(str[i]!=' ')
+            count++;
+        else
+            break;
+        
+    }
+    cout<<count<<endl;
     
     return 0;
 }
+
 
 
 
