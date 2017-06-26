@@ -7,47 +7,44 @@
 //
 
 #include<iostream>
-#include<string.h>
+#include<string>
 #include<vector>
 #include<stack>
 #include<algorithm>
-#include <cmath>
-#include<ctime>
-#include<cstdlib>
+#include<cmath>
+#include <cstdlib>
 using namespace std;
 
+
+int convert(string hex)
+{
+    int res=0;
+    if(hex[0]=='0'&&hex[1]=='x')
+        hex=hex.substr(2,hex.size()-2);
+    for(int i=hex.size()-1;i>=0;i--)
+    {
+        if(hex[i]>='0'&&hex[i]<='9')
+        {
+            res+=(hex[i]-48)*pow(16,hex.size()-i-1);
+        }
+        else if(hex[i]>='A'&&hex[i]<='F')
+        {
+            res+=(hex[i]-55)*pow(16,hex.size()-i-1);
+            
+        }
+    }
+    
+    return res;
+}
 int main()
 {
     string str="";
-    vector<char> ch;
-    stack<int> sch;
     
     while(cin>>str)
     {
-        for(int i=0;i<str.length();i++)
-        {
-            if(str[i]!='0'&&str[i]!='x')
-            {
-                if(str[i]>='0'&&str[i]<='9')
-                {
-                    sch.push(str[i]-48);
-                }
-                else if(str[i]>='A'&&str[i]<='F')
-                {
-                    sch.push(str[i]-55);
-                }
-                else
-                {
-                    return 0;
-                }
-            }
-        }
-        int output=0;
-        for(int i=0;!sch.empty();i++)
-        {
-            output=output+sch.top()*pow(16,i);
-            sch.pop();
-        }
+        
+        int output=convert(str);
+        
         cout<<output;
     }
     
